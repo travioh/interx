@@ -9,18 +9,18 @@ spotlight <- function(x, y, w, spot = 1, center = FALSE, model = 1, plot = FALSE
       a <- summary(lm(y ~ x*w, data = data))
       b <- summary(lm(y ~ x*w2, data = data))
       c <- summary(lm(y ~ x*w1, data = data))
-      moderator <- c(mean(w)-sd(w), mean(w), mean(w)+sd(w))
-      effect <- c(b$coefficients[2,1], a$coefficients[2,1], c$coefficients[2,1])
+      moderator_w <- c(mean(w)-sd(w), mean(w), mean(w)+sd(w))
+      effect_x <- c(b$coefficients[2,1], a$coefficients[2,1], c$coefficients[2,1])
       std.error <- c(b$coefficients[2,2], a$coefficients[2,2], c$coefficients[2,2])
       tstat <- c(b$coefficients[2,3], a$coefficients[2,3], c$coefficients[2,3])
       pvalue <- c(b$coefficients[2,4], a$coefficients[2,4], c$coefficients[2,4])
-      results <- data.frame(moderator,std.error,effect,tstat,pvalue)
-      ploty <- c((a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*(mean(w)-sd(w))),
-                 (a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*mean(w)),
-                 (a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*(mean(w)+sd(w))),
-                 (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*(mean(w)-sd(w))),
-                 (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*mean(w)),
-                 (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*(mean(w)+sd(w))))
+      results <- data.frame(moderator_w,std.error,effect_x,tstat,pvalue)
+      ploty <- c((a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*(mean(w)-sd(w)) + a$coefficients[4,1]*max(x)*(mean(w)-sd(w))),
+                 (a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*mean(w) + a$coefficients[4,1]*max(x)*mean(w)),
+                 (a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*(mean(w)+sd(w)) + a$coefficients[4,1]*max(x)*(mean(w)+sd(w))),
+                 (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*(mean(w)-sd(w)) + a$coefficients[4,1]*min(x)*(mean(w)-sd(w))),
+                 (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*mean(w) + a$coefficients[4,1]*min(x)*mean(w)),
+                 (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*(mean(w)+sd(w)) + a$coefficients[4,1]*min(x)*(mean(w)+sd(w))))
       cond <- c("Treatment","Treatment","Treatment","Control","Control","Control")
       mod <- c(mean(w)-sd(w), mean(w), mean(w)+sd(w),mean(w)-sd(w), mean(w), mean(w)+sd(w))
       plot.data <- data.frame(ploty, cond, mod)
@@ -37,18 +37,18 @@ spotlight <- function(x, y, w, spot = 1, center = FALSE, model = 1, plot = FALSE
       a <- summary(lm(y ~ x*w, data = data))
       b <- summary(lm(y ~ x*w2, data = data))
       c <- summary(lm(y ~ x*w1, data = data))
-      moderator <- c(mean(w)-sd(w), mean(w), mean(w)+sd(w))
-      effect <- c(b$coefficients[2,1], a$coefficients[2,1], c$coefficients[2,1])
+      moderator_w <- c(mean(w)-sd(w), mean(w), mean(w)+sd(w))
+      effect_x <- c(b$coefficients[2,1], a$coefficients[2,1], c$coefficients[2,1])
       std.error <- c(b$coefficients[2,2], a$coefficients[2,2], c$coefficients[2,2])
       tstat <- c(b$coefficients[2,3], a$coefficients[2,3], c$coefficients[2,3])
       pvalue <- c(b$coefficients[2,4], a$coefficients[2,4], c$coefficients[2,4])
-      results <- data.frame(moderator,effect,std.error,tstat,pvalue)}
-    ploty <- c((a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*(mean(w)-sd(w))),
-               (a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*mean(w)),
-               (a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*(mean(w)+sd(w))),
-               (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*(mean(w)-sd(w))),
-               (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*mean(w)),
-               (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*(mean(w)+sd(w))))
+      results <- data.frame(moderator_w,effect_x,std.error,tstat,pvalue)}
+    ploty <- c((a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*(mean(w)-sd(w)) + a$coefficients[4,1]*max(x)*(mean(w)-sd(w))),
+               (a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*mean(w) + a$coefficients[4,1]*max(x)*mean(w)),
+               (a$coefficients[1,1] + a$coefficients[2,1]*max(x) + a$coefficients[3,1]*(mean(w)+sd(w)) + a$coefficients[4,1]*max(x)*(mean(w)+sd(w))),
+               (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*(mean(w)-sd(w)) + a$coefficients[4,1]*min(x)*(mean(w)-sd(w))),
+               (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*mean(w) + a$coefficients[4,1]*min(x)*mean(w)),
+               (a$coefficients[1,1] + a$coefficients[2,1]*min(x) + a$coefficients[3,1]*(mean(w)+sd(w)) + a$coefficients[4,1]*min(x)*(mean(w)+sd(w))))
     cond <- c("Treatment","Treatment","Treatment","Control","Control","Control")
     mod <- c(mean(w)-sd(w), mean(w), mean(w)+sd(w),mean(w)-sd(w), mean(w), mean(w)+sd(w))
     plot.data <- data.frame(ploty, cond, mod)
