@@ -1,0 +1,12 @@
+Package: interX
+Type: Package
+Date: 2019-10-10
+Title: Spotlight Analysis for Interactions
+Version: 0.1.0
+Author: Travis Tae Oh
+Maintainer: Travis Tae Oh <travioh@gmail.com>
+Description: Conduct spotlight analysis for categorical x continuous variables
+License:
+Encoding: UTF-8
+LazyData: FALSE
+Depends: tidyverse
