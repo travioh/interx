@@ -1,4 +1,4 @@
-spotlight <- function(x, y, w, spot = 1, center = FALSE, model = 1, plot = FALSE, data) {
+spotlight <- function(x, y, w, spot = 1, center = TRUE, model = 1, plot = FALSE, data) {
   if(model == 1) {
     if(center == FALSE) {
       attach(data)

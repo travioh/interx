@@ -12,7 +12,7 @@ x => Categorical Variable (Must be Binary 0,1)
 y => Dependent Variable
 w => Continuous Variable
 spot => set to "1" for 1 SD below and above mean
-center => centers x and w
+center => centers w. default is to mean-center.
 data => name of dataset
 
 }
