@@ -2,7 +2,7 @@
 \alias{interX}
 \title{interX}
 \usage{
-spotlight(x, w, y, spot = 1, center = FALSE, data)
+spotlight(x, w, y, spot = 1, center = TRUE, plot = FALSE, data)
 }
 \description{
 Conducts spotlight analysis on a simple categorical(x) x continuous (w) interaction
@@ -18,9 +18,9 @@ data => name of dataset
 
 }
 \examples{
-x <- sample(0:1, 50, replace = TRUE)
-y <- sample(1:5, 50, replace = TRUE)
-w <- sample(1:5, 50, replace = TRUE)
+x <- sample(0:1, 200, replace = TRUE)
+y <- sample(1:5, 200, replace = TRUE)
+w <- sample(1:5, 200, replace = TRUE)
 dataset <- data.frame(x, y, w, v)
 spotlight(x = x, y = y, w = w, data = dataset)
 spotlight(x = x, y = y, w = w, v = v, data = dataset, plot = TRUE)
