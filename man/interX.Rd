@@ -2,7 +2,7 @@
 \alias{interX}
 \title{interX}
 \usage{
-spotlight(x, w, y, spot = 1, center = TRUE, plot = FALSE, data)
+spotlight(x, w, y, spot = 1, center = TRUE, plot = FALSE, model = 1, data)
 }
 \description{
 Conducts spotlight analysis on a simple categorical(x) x continuous (w) interaction
@@ -14,14 +14,18 @@ w => Continuous Variable
 v => Covariate (Only allows 1 covariate for now)
 spot => set to "1" for 1 SD below and above mean
 center => centers w. default is to mean-center.
+plot => provided ggplot of interaction
+model => type of model (only model 1 available)
 data => name of dataset
 
 }
 \examples{
-x <- sample(0:1, 200, replace = TRUE)
-y <- sample(1:5, 200, replace = TRUE)
-w <- sample(1:5, 200, replace = TRUE)
-dataset <- data.frame(x, y, w, v)
-spotlight(x = x, y = y, w = w, data = dataset)
-spotlight(x = x, y = y, w = w, v = v, data = dataset, plot = TRUE)
+group <- sample(0:1, 200, replace = TRUE)
+dv <- sample(1:5, 200, replace = TRUE)
+cont <- sample(1:5, 200, replace = TRUE)
+cova <- sample(1:5, 200, replace = TRUE)
+dataset <- data.frame(group, dv, cont, cova)
+
+spotlight(x = group, y = dv, w = cont, data = dataset, plot = TRUE)
+spotlight(x = group, y = dv, w = cont, v = cova, data = dataset, plot = TRUE)
 }
